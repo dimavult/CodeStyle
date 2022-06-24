@@ -1,8 +1,14 @@
 import java.util.Scanner;
 
 public class DepositCalculator {
-    double calculateComplexPercent(double a, double y, int d) {
-        double pay = a * Math.pow((1 + y / 12), 12 * d);
+
+    double getRound(double value, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(value * scale) / scale;
+    }
+
+    double calculateComplexPercent(double amount, double yearRate, int depositPeriod) {
+        double pay = amount * Math.pow((1 + yearRate / 12), 12 * depositPeriod);
         return getRound(pay, 2);
     }
 
@@ -10,12 +16,7 @@ public class DepositCalculator {
         return getRound(amount + amount * yearRate * depositPeriod, 2);
     }
 
-    double getRound(double value, int places) {
-        double scale = Math.pow(10, places);
-        return Math.round(value * scale) / scale;
-    }
-
-    void getDepositResult() {
+    void getDepositInformation() {
         int period;
         int action;
         int amount;
@@ -38,6 +39,6 @@ public class DepositCalculator {
     }
 
     public static void main(String[] args) {
-        new DepositCalculator().getDepositResult();
+        new DepositCalculator().getDepositInformation();
     }
 }
